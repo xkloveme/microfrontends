@@ -20,9 +20,9 @@ import Framework from './Framework';
 
 // let app = null;
 
-function render({ appContent, loading }) {
+function render ({ appContent, loading }) {
   /*
-  service for vue
+  packages for vue
    */
   // if (!app) {
   //   app = new Vue({
@@ -51,7 +51,7 @@ function render({ appContent, loading }) {
   ReactDOM.render(<Framework loading={loading} content={appContent} />, container);
 }
 
-function genActiveRule(routerPrefix) {
+function genActiveRule (routerPrefix) {
   return location => location.pathname.startsWith(routerPrefix);
 }
 
