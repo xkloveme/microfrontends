@@ -1,3 +1,10 @@
+/*
+ * @describe: 描述
+ * @Author: superDragon
+ * @Date: 2019-10-24 15:18:34
+ * @LastEditors: superDragon
+ * @LastEditTime: 2019-10-24 19:11:53
+ */
 /**
  * @author Kuitos
  * @since 2019-05-16
@@ -15,7 +22,7 @@ import Framework from './Framework';
 
 function render({ appContent, loading }) {
   /*
-  examples for vue
+  service for vue
    */
   // if (!app) {
   //   app = new Vue({
@@ -59,7 +66,7 @@ const request = url =>
 registerMicroApps(
   [
     { name: 'react app', entry: '//localhost:7100', render, activeRule: genActiveRule('/react') },
-    { name: 'react15 app', entry: '//localhost:7102', render, activeRule: genActiveRule('/15react15') },
+    // { name: 'react15 app', entry: '//localhost:7102', render, activeRule: genActiveRule('/15react15') },
     { name: 'vue app', entry: '//localhost:7101', render, activeRule: genActiveRule('/vue') },
   ],
   {

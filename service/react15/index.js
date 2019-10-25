@@ -1,3 +1,11 @@
+/* eslint-disable space-before-function-paren */
+/*
+ * @describe: 描述
+ * @Author: superDragon
+ * @Date: 2019-10-24 15:18:34
+ * @LastEditors: superDragon
+ * @LastEditTime: 2019-10-24 18:52:23
+ */
 /**
  * @author Kuitos
  * @since 2019-05-16
@@ -14,11 +22,9 @@ export async function bootstrap() {
 
 export async function mount(props) {
   console.log('props from main framework', props);
-  ReactDOM.render(<App/>, document.getElementById('reactRoot'));
+  ReactDOM.render(<App />, document.getElementById('react15Root'));
 }
 
 export async function unmount() {
-  ReactDOM.unmountComponentAtNode(document.getElementById('reactRoot'));
+  ReactDOM.unmountComponentAtNode(document.getElementById('react15Root'));
 }
-
-

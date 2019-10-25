@@ -1,3 +1,10 @@
+/*
+ * @describe: 描述
+ * @Author: superDragon
+ * @Date: 2019-10-24 15:18:34
+ * @LastEditors: superDragon
+ * @LastEditTime: 2019-10-24 18:51:11
+ */
 const fabric = require('@umijs/fabric');
 
 module.exports = {

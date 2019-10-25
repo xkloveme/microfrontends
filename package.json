@@ -8,11 +8,13 @@
   "sideEffects": false,
   "scripts": {
     "start": "concurrently \"npm run start:main\" \"npm run start:react16\" \"npm run start:react15\" \"npm run start:vue\"",
-    "install:examples": "npm run build && cd examples/main && npm i && cd ../react16 && npm i && cd ../react15 && npm i && cd ../vue && npm i",
-    "start:main": "cd examples/main && npm start",
-    "start:react16": "cd examples/react16 && npm start",
-    "start:react15": "cd examples/react15 && npm start",
-    "start:vue": "cd examples/vue && npm start",
+    "install:service": "npm run build && cd service/main && npm i && cd ../react16 && npm i && cd ../react15 && npm i && cd ../vue && npm i",
+    "setup": "lerna link && lerna bootstrap",
+    "dev": "lerna run dev --stream",
+    "start:main": "cd service/main && npm start",
+    "start:react16": "cd service/react16 && npm start",
+    "start:react15": "cd service/react15 && npm start",
+    "start:vue": "cd service/vue && npm start",
     "build": "father-build",
     "release": "np --no-cleanup --yolo --no-publish",
     "prepublishOnly": "npm run lint && npm run build",
@@ -37,24 +39,25 @@
   },
   "homepage": "https://github.com/kuitos/qiankun#readme",
   "dependencies": {
-    "@babel/runtime": "^7.5.5",
+    "@babel/runtime": "^7.6.3",
     "import-html-entry": "^1.2.6",
-    "lodash": "^4.17.11",
-    "single-spa": "^4.3.4"
+    "lodash": "^4.17.15",
+    "single-spa": "^4.4.1"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.129",
-    "@umijs/fabric": "^1.1.10",
-    "babel-plugin-import": "^1.12.1",
+    "@types/lodash": "^4.14.144",
+    "@umijs/fabric": "^1.2.1",
+    "babel-plugin-import": "^1.12.2",
     "check-prettier": "^1.0.3",
-    "concurrently": "^4.1.2",
-    "father-build": "^1.7.0",
-    "husky": "^2.3.0",
+    "concurrently": "^5.0.0",
+    "father-build": "^1.13.2",
+    "husky": "^3.0.9",
+    "lerna": "^3.13.0",
     "lint-staged": "^9.4.2",
-    "np": "^5.0.3",
+    "np": "^5.1.1",
     "prettier": "^1.18.2",
     "rimraf": "^3.0.0",
-    "typescript": "^3.4.5"
+    "typescript": "^3.6.4"
   },
   "husky": {
     "hooks": {
