@@ -1,0 +1,6 @@
+[submodule "service/microfrontends-vue"]
+	path = service/microfrontends-vue
+	url = https://github.com/xkloveme/microfrontends-vue.git
+[submodule "service/microfrontends-react"]
+	path = service/microfrontends-react
+	url = https://github.com/xkloveme/microfrontends-react.git
