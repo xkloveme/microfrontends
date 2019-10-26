@@ -7,3 +7,9 @@
 ```bash
 npm run setup
 ```
+
+- 运行项目
+
+```bash
+npm run dev
+```

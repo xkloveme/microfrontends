@@ -8,7 +8,7 @@ import { isFunction, noop } from 'lodash';
 export default function hijack() {
   // FIXME umi unmount feature request
   // @see http://gitlab.alipay-inc.com/bigfish/bigfish/issues/1154
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line packages/no-unused-vars
   let rawHistoryListen = (_: any) => noop;
   const historyListeners: Array<typeof noop> = [];
   const historyUnListens: Array<typeof noop> = [];

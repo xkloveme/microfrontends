@@ -1,5 +1,5 @@
 {
-  "name": "qiankun",
+  "name": "big-framework",
   "version": "1.2.2",
   "description": "An completed implementation of Micro Frontends",
   "main": "./dist/index.js",
@@ -51,17 +51,12 @@
     "concurrently": "^5.0.0",
     "father-build": "^1.13.2",
     "husky": "^3.0.9",
-    "lerna": "^3.13.0",
+    "lerna": "^3.18.3",
     "lint-staged": "^9.4.2",
     "np": "^5.1.1",
     "prettier": "^1.18.2",
     "rimraf": "^3.0.0",
     "typescript": "^3.6.4"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "**/*.{js,ts,json,css,md}": ["npm run prettier", "git add"],

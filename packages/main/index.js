@@ -1,15 +1,10 @@
 /*
- * @describe: 描述
+ * @describe: 主程入口
  * @Author: superDragon
  * @Date: 2019-10-24 15:18:34
  * @LastEditors: superDragon
- * @LastEditTime: 2019-10-24 19:11:53
+ * @LastEditTime: 2019-10-26 13:59:01
  */
-/**
- * @author Kuitos
- * @since 2019-05-16
- */
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import fetch from 'isomorphic-fetch';
@@ -27,13 +22,13 @@ function render ({ appContent, loading }) {
   // if (!app) {
   //   app = new Vue({
   //     el: '#container',
-  //     data() {
+  //     data () {
   //       return {
   //         content: appContent,
   //         loading,
   //       };
   //     },
-  //     render(h) {
+  //     render (h) {
   //       return h(Framework, {
   //         props: {
   //           content: this.content,
@@ -88,7 +83,7 @@ registerMicroApps(
   },
   {
     fetch: request,
-  },
+  }
 );
 
 setDefaultMountApp('/react');
