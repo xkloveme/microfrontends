@@ -15,50 +15,50 @@
 </template>
 
 <script>
-	export default {
-		name: 'framework',
-		props: {
-			loading: Boolean,
-			content: String,
-		},
-		methods: {
-			goto(title, href) {
-				window.history.pushState({}, title, href);
-			},
-		},
-	};
+export default {
+  name: 'framework',
+  props: {
+    loading: Boolean,
+    content: String,
+  },
+  methods: {
+    goto (title, href) {
+      window.history.pushState({}, title, href);
+    },
+  },
+};
 </script>
+<style scoped >
+.header {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei,
+    Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
 
-<style scoped>
-  .header {
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  > nav > ol {
+    margin: 0;
+    font-size: 14px;
+    color: blue;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
 
-    > nav > ol {
-      margin: 0;
-      font-size: 14px;
-      color: blue;
-      display: flex;
-      flex-direction: column;
+    > li {
+      box-sizing: content-box;
+      line-height: 20px;
+      font-variant: tabular-nums;
+      font-feature-settings: 'tnum';
+      list-style: decimal;
       padding: 0;
+      margin: 0;
+    }
 
-      > li {
-        box-sizing: content-box;
-        line-height: 20px;
-        font-variant: tabular-nums;
-        font-feature-settings: "tnum";
-        list-style: decimal;
-        padding: 0;
-        margin: 0;
-      }
-
-      a {
-        color: blue;
-        text-decoration-line: underline;
-      }
+    a {
+      color: blue;
+      text-decoration-line: underline;
     }
   }
+}
 
-  .appContainer {
-    margin-top: 50px;
-  }
+.appContainer {
+  margin-top: 50px;
+}
 </style>

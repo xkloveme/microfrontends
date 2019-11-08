@@ -3,7 +3,7 @@
  * @Author: superDragon
  * @Date: 2019-10-24 15:18:34
  * @LastEditors: superDragon
- * @LastEditTime: 2019-10-27 19:51:52
+ * @LastEditTime: 2019-11-08 10:56:44
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -61,8 +61,7 @@ const request = url =>
 registerMicroApps(
   [
     { name: 'react app', entry: '//localhost:7100', render, activeRule: genActiveRule('/react') },
-    // { name: 'react15 app', entry: '//localhost:7102', render, activeRule: genActiveRule('/15react15') },
-    { name: 'vue app', entry: '//localhost:7101', render, activeRule: genActiveRule('/vue') },
+    { name: 'vue app', entry: '//localhost:7101', render, activeRule: genActiveRule('/vue') }
   ],
   {
     beforeLoad: [
