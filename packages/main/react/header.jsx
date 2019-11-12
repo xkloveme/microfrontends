@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
 import style from './index.less';
 
 export default class Header extends Component {
@@ -23,7 +22,6 @@ export default class Header extends Component {
   }
 
   goto(title, href) {
-    console.log(999, browserHistory.getCurrentLocation().pathname);
     window.history.pushState({}, title, href);
   }
   setInterval() {
@@ -40,6 +38,9 @@ export default class Header extends Component {
           </li>
           <li>
             <a onClick={() => this.goto('vue app', '/vue')}>vue</a>
+          </li>
+          <li>
+            <a onClick={() => this.goto('vuecli app', '/vuecli')}>vuecli</a>
           </li>
         </nav>
       </header>

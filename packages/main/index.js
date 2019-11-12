@@ -3,7 +3,7 @@
  * @Author: superDragon
  * @Date: 2019-10-24 15:18:34
  * @LastEditors: superDragon
- * @LastEditTime: 2019-11-08 10:56:44
+ * @LastEditTime: 2019-11-12 18:53:05
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -13,30 +13,37 @@ import { registerMicroApps, runAfterFirstMounted, setDefaultMountApp, start } fr
 import Framework from './Framework';
 // import Framework from './Framework.vue';
 
-// let app = null;
-
+let registerAPP = [
+  { name: 'react app', entry: '//localhost:7100', render, activeRule: genActiveRule('/react') },
+  { name: 'vue app', entry: '//localhost:7101', render, activeRule: genActiveRule('/vue') },
+  { name: 'vuecli app', entry: '//localhost:7103', render, activeRule: genActiveRule('/vuecli') }
+]
+// let app = null
 function render ({ appContent, loading }) {
   /*
   packages for vue
    */
   // if (!app) {
-  //   app = new Vue({
-  //     el: '#container',
-  //     data () {
-  //       return {
+  //   window.onload = function () {
+  //     app = new Vue({
+  //       el: '#container',
+  //       // render: h => h(Framework),
+  //       components: { Framework },
+  //       data: {
   //         content: appContent,
-  //         loading,
-  //       };
-  //     },
-  //     render (h) {
-  //       return h(Framework, {
-  //         props: {
-  //           content: this.content,
-  //           loading: this.loading,
-  //         },
-  //       });
-  //     },
-  //   });
+  //         loading
+  //       },
+  //       mounted () { console.log(this.content, 8) },
+  //       render (h) {
+  //         return h(Framework, {
+  //           props: {
+  //             content: this.content,
+  //             loading: this.loading,
+  //           },
+  //         });
+  //       },
+  //     });
+  //   }
   // } else {
   //   app.content = appContent;
   //   app.loading = loading;
@@ -59,10 +66,7 @@ const request = url =>
   });
 
 registerMicroApps(
-  [
-    { name: 'react app', entry: '//localhost:7100', render, activeRule: genActiveRule('/react') },
-    { name: 'vue app', entry: '//localhost:7101', render, activeRule: genActiveRule('/vue') }
-  ],
+  registerAPP,
   {
     beforeLoad: [
       app => {

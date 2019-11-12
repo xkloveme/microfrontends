@@ -4,3 +4,6 @@
 [submodule "packages/microfrontends-react"]
 	path = packages/microfrontends-react
 	url = https://github.com/xkloveme/microfrontends-react.git
+[submodule "packages/microfrontends-vuecli"]
+	path = packages/microfrontends-vuecli
+	url = https://github.com/xkloveme/microfrontends-vuecli.git

@@ -7,7 +7,7 @@ import { importEntry } from 'import-html-entry';
 import { isFunction } from 'lodash';
 import { registerApplication, start as startSpa } from 'single-spa';
 import { Fetch, RegistrableApp, StartOpts } from './interfaces';
-import { prefetchAfterFirstMounted } from './prefetch';
+import { prefetchAfterFirstMounted, prefetchAll } from './prefetch';
 import { genSandbox } from './sandbox';
 
 declare global {
@@ -77,13 +77,13 @@ const frameworkStartedDefer = new Deferred<void>();
 export function registerMicroApps<T extends object = {}>(
   apps: Array<RegistrableApp<T>>,
   lifeCycles: LifeCycles<T> = {},
-  opts?: RegisterMicroAppsOpts,
+  opts: RegisterMicroAppsOpts = {},
 ) {
   // eslint-disable-next-line no-underscore-dangle
   window.__POWERED_BY_QIANKUN__ = true;
 
   const { beforeUnmount = [], afterUnmount = [], afterMount = [], beforeMount = [], beforeLoad = [] } = lifeCycles;
-  const { fetch } = opts || {};
+  const { fetch } = opts;
   microApps = [...microApps, ...apps];
 
   let prevAppUnmountedDeferred: Deferred<void>;
@@ -122,11 +122,26 @@ export function registerMicroApps<T extends object = {}>(
 
         await execHooksChain(toArray(beforeLoad), app);
 
-        // 获取 模块/应用 导出的 lifecycle hooks
-        const { bootstrap: bootstrapApp, mount, unmount } = await execScripts(jsSandbox);
+        // get the lifecycle hooks from module exports
+        let { bootstrap: bootstrapApp, mount, unmount } = await execScripts(jsSandbox);
 
         if (!isFunction(bootstrapApp) || !isFunction(mount) || !isFunction(unmount)) {
-          throw new Error(`You need to export the functional lifecycles in ${appName} entry`);
+          // fallback to global variable who named with ${appName} while module exports not found
+          const globalVariableExports = (window as any)[appName] || {};
+          bootstrapApp = globalVariableExports.bootstrap;
+          // eslint-disable-next-line prefer-destructuring
+          mount = globalVariableExports.mount;
+          // eslint-disable-next-line prefer-destructuring
+          unmount = globalVariableExports.unmount;
+          if (!isFunction(bootstrapApp) || !isFunction(mount) || !isFunction(unmount)) {
+            throw new Error(`You need to export the functional lifecycles in ${appName} entry`);
+          }
+
+          if (process.env.NODE_ENV === 'development') {
+            console.warn(
+              `LifeCycles are not found from ${appName} entry exports, fallback to get them from window['${appName}'] `,
+            );
+          }
         }
 
         return {
@@ -159,6 +174,8 @@ export function registerMicroApps<T extends object = {}>(
             unmount,
             unmountSandbox,
             async () => execHooksChain(toArray(afterUnmount), app),
+            // remove the app content after unmount
+            async () => render({ appContent: '', loading: false }),
             async () => {
               if ((await validateSingularMode(singularMode, app)) && prevAppUnmountedDeferred) {
                 prevAppUnmountedDeferred.resolve();
@@ -175,12 +192,22 @@ export function registerMicroApps<T extends object = {}>(
 }
 
 export * from './effects';
+export * from './interfaces';
 
 export function start(opts: StartOpts = {}) {
   const { prefetch = true, jsSandbox = true, singular = true, fetch } = opts;
 
-  if (prefetch) {
-    prefetchAfterFirstMounted(microApps, fetch);
+  switch (prefetch) {
+    case true:
+      prefetchAfterFirstMounted(microApps, fetch);
+      break;
+
+    case 'all':
+      prefetchAll(microApps, fetch);
+      break;
+
+    default:
+      break;
   }
 
   if (jsSandbox) {

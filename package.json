@@ -2,21 +2,22 @@
   "name": "microfrontends",
   "version": "1.2.2",
   "description": "An completed implementation of Micro Frontends",
-  "main": "./dist/index.js",
-  "module": "./dist/index.esm.js",
-  "types": "./dist/index.d.ts",
+  "main": "./lib/index.js",
+  "module": "./es/index.js",
+  "types": "./es/index.d.ts",
   "sideEffects": false,
   "private": true,
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "start": "concurrently \"npm run start:main\" \"npm run start:react\" \"npm run start:vue\"",
+    "start": "concurrently \"npm run start:main\" \"npm run start:react\" \"npm run start:vue\"  \"npm run start:vuecli\"",
     "setup": "lerna link && lerna bootstrap",
     "dev": "npm run start",
     "start:main": "cd packages/main && npm start",
     "start:react": "cd packages/microfrontends-react && npm start",
     "start:vue": "cd packages/microfrontends-vue && npm start",
+    "start:vuecli": "cd packages/microfrontends-vuecli && npm start",
     "build": "LERNA=none father build",
     "release": "np --no-cleanup --yolo --no-publish",
     "prepublishOnly": "npm run lint && npm run build",
@@ -32,7 +33,9 @@
     "url": "git+https://github.com/xkloveme/microfrontends.git"
   },
   "files": [
-    "dist"
+    "dist",
+    "es",
+    "lib"
   ],
   "author": "xkloveme",
   "license": "MIT",
