@@ -17,6 +17,11 @@ export default class Header extends Component {
           title: 'vue app',
           href: '/vue',
         },
+        {
+          name: 'vuecli',
+          title: 'vuecli app',
+          href: '/vuecli',
+        },
       ],
     };
   }

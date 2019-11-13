@@ -8,7 +8,6 @@ export default function Framework(props) {
     <>
       <Header />
       <Login />
-      <h1>头部</h1>
       {loading ? <div>loading...</div> : null}
       <div dangerouslySetInnerHTML={{ __html: content }} />
     </>
